@@ -191,16 +191,13 @@ Check the service, action, reason, and exact v1 target. Approve only the new ID 
 
 Replace the example approval ID with the fresh ID. Do not reuse an old approval. Approval records the human decision; it does not execute the change.
 
-## 8. Execute the approved rollback through MCP
+## 8. Automatic rollback after human approval
 
-Keep the MCP server running in Terminal 2. In Terminal 3, run the helper with the same fresh, approved ID:
+Keep the MCP Server running in Terminal 2. When you approve the request in Step 7 using `review_approvals.py approve`, the script saves the human decision and automatically calls `execute_approved_rollback` through MCP.
 
-~~~bash
-./.venv/bin/python execute_approved_rollback.py "approval-REPLACE-WITH-CURRENT-ID"
-~~~
+Review the command output to confirm whether MCP reported success. Do not run `execute_approved_rollback.py` separately.
 
-The helper calls execute_approved_rollback on the MCP server. The server checks the approval and configured known-good target before asking ECS to update the service. It does not wait for ECS to finish deploying.
-
+Proceed to the next step to wait for ECS to stabilize and verify recovery.
 ## 9. Verify recovery
 
 In Terminal 1, still in cloud-ops-terraform, wait for ECS stability and inspect the active task definition:
