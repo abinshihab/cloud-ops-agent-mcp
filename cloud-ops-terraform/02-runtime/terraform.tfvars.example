@@ -1,0 +1,2 @@
+allowed_cidr = "203.0.113.10/32" # REPLACE with your real public IPv4 address.
+demo_release = "v1"

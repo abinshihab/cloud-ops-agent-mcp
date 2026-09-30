@@ -1,0 +1,28 @@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Local credentials and secrets
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+
+# Terraform local data
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/*.tfplan
+**/terraform.tfvars
+!**/terraform.tfvars.example
+
+# Local approval records and macOS files
+approvals.json
+.DS_Store
+*.log
