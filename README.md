@@ -104,15 +104,23 @@ Wait for “Apply complete.” ECS may take a few minutes to become healthy.
 
 ## 3. Start the MCP server
 
-Open Terminal 2 at the repository root:
+Open Terminal 2 at the repository root. Start this step after Terraform has created the runtime resources:
 
 ~~~bash
-cd "/path/to/cloud-ops-agent-mcp"
+cd "/Users/administrator/Desktop/Abu Dhabi AWS Meetup/AWS Community Day 2026/cloud-ops-agent-mcp"
+
+export ROLLBACK_TASK_DEFINITION_ARN="$(
+  terraform -chdir=cloud-ops-terraform/02-runtime output -json task_definitions |
+  ./.venv/bin/python -c 'import json,sys; print(json.load(sys.stdin)["v1"])'
+)"
+
+echo "Rollback target: $ROLLBACK_TASK_DEFINITION_ARN"
+
 export CLOUD_OPS_DATA_MODE=live
 ./.venv/bin/python mcp_server.py
 ~~~
 
-Replace /path/to/cloud-ops-agent-mcp with the actual local project directory. Leave this terminal open.
+The echo should show the full Terraform ARN for v1. Leave Terminal 2 open while the server runs.
 
 ## 4. Verify the healthy baseline
 

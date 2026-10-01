@@ -42,7 +42,7 @@ APPROVALS_FILE = Path(
 )
 ROLLBACK_TASK_DEFINITION_ARN = os.getenv(
     "ROLLBACK_TASK_DEFINITION_ARN",
-    "arn:aws:ecs:us-east-1:991731688366:task-definition/cloud-ops-checkout:12",
+    "arn:aws:ecs:us-east-1:991731688366:task-definition/cloud-ops-checkout:21",
 )
 ROLLBACK_LOCK = threading.Lock()
 
